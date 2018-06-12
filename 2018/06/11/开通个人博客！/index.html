@@ -401,16 +401,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/11/开通个人博客！/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/11/开通个人博客！/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -490,13 +480,9 @@
           
 
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
+    <div id="gitalk-container"></div>
   
+
 
 
 
@@ -781,50 +767,32 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-      <style>
-        a.gitment-editor-footer-tip { display: none; }
-        .gitment-container.gitment-footer-container { display: none; }
-      </style>
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'toby-wang',
-            repo: 'gitcommit',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '150d5de91ff8a62620e2d52c3d7dc0709b0702a4',
-            
-                client_id: 'c92772eed46415875fbb'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
 
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'c92772eed46415875fbb',
+          clientSecret: '150d5de91ff8a62620e2d52c3d7dc0709b0702a4',
+          repo: 'gitcommit',
+          owner: 'toby-wang',
+          admin: ['toby-wang'],
+          id: location.pathname,
+          labels: 'gitalk',
+          perPage: 15,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
+        })
+
+        gitalk.render('gitalk-container')           
+       </script>
 
 
   
