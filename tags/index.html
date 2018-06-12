@@ -385,9 +385,9 @@
           
 
   
-    <div id="gitalk-container"></div>
+    <div class="comments" id="comments">
+    </div>
   
-
 
 
 
@@ -674,30 +674,30 @@
 
 
 
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'Edag39XVc5F2Jc5IwkS62mat-gzGzoHsz',
+        appKey: 'T9I5sjjKqaCMDdrijqDJ4SzA',
+        placeholder: 'Please give your opinion',
+        avatar:'retro',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
-
-
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-   <script type="text/javascript">
-        var gitalk = new Gitalk({
-          clientID: 'c92772eed46415875fbb',
-          clientSecret: '150d5de91ff8a62620e2d52c3d7dc0709b0702a4',
-          repo: 'gitcommit',
-          owner: 'toby-wang',
-          admin: ['toby-wang'],
-          id: location.pathname,
-          labels: 'gitalk',
-          perPage: 15,
-          pagerDirection: 'last',
-          createIssueManually: true,
-          distractionFreeMode: false
-        })
-
-        gitalk.render('gitalk-container')           
-       </script>
 
 
   
