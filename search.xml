@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>MySQL数字类型详解</title>
+      <link href="/2018/06/12/MySQL%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3/"/>
+      <url>/2018/06/12/MySQL%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3/</url>
+      <content type="html"><![CDATA[<p>最近在写需求的时候建了个MySQL的表，上线之前让马老C帮我review下，其中有个只需要一位数的<code>type_id</code>列当是我设置的类型是<code>int(1)</code>，后来马老C在线上建表的时候给改成了<code>tinyint(1)</code>,诶？这个类型第一次见(菜～)，于是就查找了相关的资料对比多种数字类型差别以及在实际应用中的选择。</p><a id="more"></a><hr><table><thead><tr><th>数据类型</th><th style="text-align:center">取值范围</th><th style="text-align:center">存储长度</th></tr></thead><tbody><tr><td>bigint</td><td style="text-align:center">-2^63 (-9,223,372,036,854,775,808) to 2^63-1 (9,223,372,036,854,775,807)</td><td style="text-align:center">8字节</td></tr><tr><td>int</td><td style="text-align:center">-2^31 (-2,147,483,648) to 2^31-1 (2,147,483,647)</td><td style="text-align:center">4字节</td></tr><tr><td>mediumint</td><td style="text-align:center">-2^23 (-8,388,608) to 2^23-1 (8,388,607)</td><td style="text-align:center">3字节</td></tr><tr><td>smallint</td><td style="text-align:center">-2^15 (-32,768) to 2^15-1 (32,767)</td><td style="text-align:center">2字节</td></tr><tr><td>tinyint</td><td style="text-align:center">0 to 255</td><td style="text-align:center">1字节</td></tr></tbody></table><h4 id="我们需要注意的是"><a href="#我们需要注意的是" class="headerlink" title="我们需要注意的是"></a>我们需要注意的是</h4><blockquote><p>我们设计数据库时，经常会这样设计<code>int(M)</code>,并且大家误以为这个M意为所占存储空间，其实这个M只代表<code>显示宽度</code>，也就就是说实际上<code>int(1)</code>和<code>int(4)</code>占用的磁盘上的存储是一样的，都是4个字节。所以当存储位数只有1时，那么选择<code>tinyint</code>类型是最节省存储空间的。</p></blockquote><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul><li>M的大小和所占实际存储空间没有关系</li><li>无符号和zerofill的时候会填充0,显示成M对应的宽度</li><li>整数类型都一样,有默认的显示宽度</li><li>对于数字类型时，开发中不必纠结M的值，可以直接忽略，最后使用数据库默认值即可</li></ul><p>参考资料：<a href="https://dev.mysql.com/doc/refman/5.7/en/numeric-type-attributes.html" target="_blank" rel="noopener">MySQL5.7官方手册</a>  <a href="https://my.oschina.net/DavidRicardo/blog/869169" target="_blank" rel="noopener">oschina博客</a></p>]]></content>
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据库 </tag>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>个人博客开通第一天！</title>
       <link href="/2018/06/11/%E5%BC%80%E9%80%9A%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%81/"/>
       <url>/2018/06/11/%E5%BC%80%E9%80%9A%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%81/</url>
