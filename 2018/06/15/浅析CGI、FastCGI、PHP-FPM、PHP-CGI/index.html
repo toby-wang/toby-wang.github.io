@@ -122,7 +122,7 @@
 <meta property="og:site_name" content="Toby的博客">
 <meta property="og:description" content="一、CGI（通用网关接口） CGI 是Web 服务器运行时外部程序的规范标准（一种协议）,按CGI 编写的程序可以扩展服务器功能。 CGI应用程序是独立于服务器的，所以说几乎所有服务器都支持CGI,可用任何语言编写实现CGI（只要这种语言具有标准输入、输出和环境变量）。 CGI是外部应用程序（CGI程序）与WEB服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的过程。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-15T09:36:37.879Z">
+<meta property="og:updated_time" content="2018-06-15T09:40:17.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析CGI、FastCGI、PHP-FPM、PHP-CGI">
 <meta name="twitter:description" content="一、CGI（通用网关接口） CGI 是Web 服务器运行时外部程序的规范标准（一种协议）,按CGI 编写的程序可以扩展服务器功能。 CGI应用程序是独立于服务器的，所以说几乎所有服务器都支持CGI,可用任何语言编写实现CGI（只要这种语言具有标准输入、输出和环境变量）。 CGI是外部应用程序（CGI程序）与WEB服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的过程。">
@@ -376,7 +376,7 @@
                 
               
 
-              <time title="创建时间：2018-06-15 17:26:47 / 修改时间：17:36:37" itemprop="dateCreated datePublished" datetime="2018-06-15T17:26:47+08:00">2018-06-15</time>
+              <time title="创建时间：2018-06-15 17:26:47 / 修改时间：17:40:17" itemprop="dateCreated datePublished" datetime="2018-06-15T17:26:47+08:00">2018-06-15</time>
             
 
             
@@ -456,7 +456,8 @@
 <li>CGI是外部应用程序（CGI程序）与WEB服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的过程。<a id="more"></a></li>
 <li>工作流程：我们说Internet把用户请求送到web服务器-&gt;web服务器接收用户请求并交给CGI程序处理-&gt;CGI程序 把处理结果传送给web服务器-&gt;web服务器把结果送回到用户。</li>
 </ul>
-<h5 id="举个例子："><a href="#举个例子：" class="headerlink" title="举个例子："></a>举个例子：</h5><blockquote>
+<p>举个例子：</p>
+<blockquote>
 <p>比如，用户请求index.html，那么web server会去文件系统中找到这个文件，发送给浏览器，这里分发的是静态数据。如果现在请求的是index.php，根据配置文件，nginx知道这个不是静态文件，需要去找PHP解释器来处理，那么他会把这个请求简单处理后交给PHP解释器。Nginx会传哪些数据给PHP解释器呢？url、查询字符串、POST数据、HTTP header等，那么CGI就是规定要传哪些数据、以什么样的格式传递给后方处理这个请求的协议。</p>
 </blockquote>
 <blockquote>
@@ -726,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、CGI（通用网关接口）"><span class="nav-number">1.</span> <span class="nav-text">一、CGI（通用网关接口）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#举个例子："><span class="nav-number">1.0.1.</span> <span class="nav-text">举个例子：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、FastCGI"><span class="nav-number">2.</span> <span class="nav-text">二、FastCGI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、PHP-FPM、PHP-CGI"><span class="nav-number">3.</span> <span class="nav-text">三、PHP-FPM、PHP-CGI</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、CGI（通用网关接口）"><span class="nav-number">1.</span> <span class="nav-text">一、CGI（通用网关接口）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、FastCGI"><span class="nav-number">2.</span> <span class="nav-text">二、FastCGI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、PHP-FPM、PHP-CGI"><span class="nav-number">3.</span> <span class="nav-text">三、PHP-FPM、PHP-CGI</span></a></li></ol></div>
             
 
           </div>
