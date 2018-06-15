@@ -3,6 +3,31 @@
   
     
     <entry>
+      <title>浅析CGI、FastCGI、PHP-FPM、PHP-CGI</title>
+      <link href="/2018/06/15/%E6%B5%85%E6%9E%90CGI%E3%80%81FastCGI%E3%80%81PHP-FPM%E3%80%81PHP-CGI/"/>
+      <url>/2018/06/15/%E6%B5%85%E6%9E%90CGI%E3%80%81FastCGI%E3%80%81PHP-FPM%E3%80%81PHP-CGI/</url>
+      <content type="html"><![CDATA[<h3 id="一、CGI（通用网关接口）"><a href="#一、CGI（通用网关接口）" class="headerlink" title="一、CGI（通用网关接口）"></a>一、CGI（通用网关接口）</h3><ul><li>CGI 是Web 服务器运行时外部程序的规范标准（一种协议）,按CGI 编写的程序可以扩展服务器功能。</li><li>CGI应用程序是独立于服务器的，所以说<strong>几乎所有服务器都支持CGI,可用任何语言编写实现CGI</strong>（只要这种语言具有标准输入、输出和环境变量）。</li><li>CGI是外部应用程序（CGI程序）与WEB服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的过程。<a id="more"></a></li><li>工作流程：我们说Internet把用户请求送到web服务器-&gt;web服务器接收用户请求并交给CGI程序处理-&gt;CGI程序 把处理结果传送给web服务器-&gt;web服务器把结果送回到用户。</li></ul><h5 id="举个例子："><a href="#举个例子：" class="headerlink" title="举个例子："></a>举个例子：</h5><blockquote><p>比如，用户请求index.html，那么web server会去文件系统中找到这个文件，发送给浏览器，这里分发的是静态数据。如果现在请求的是index.php，根据配置文件，nginx知道这个不是静态文件，需要去找PHP解释器来处理，那么他会把这个请求简单处理后交给PHP解释器。Nginx会传哪些数据给PHP解释器呢？url、查询字符串、POST数据、HTTP header等，那么CGI就是规定要传哪些数据、以什么样的格式传递给后方处理这个请求的协议。</p></blockquote><blockquote><p>当web server收到index.php这个请求后，<strong>会启动对应的CGI程序，这里就是PHP的解释器</strong>。接下来PHP解释器会解析php.ini文件，初始化执行环境，然后处理请求，再以规定CGI规定的格式返回处理后的结果，退出进程。web server再把结果返回给浏览器。</p></blockquote><h3 id="二、FastCGI"><a href="#二、FastCGI" class="headerlink" title="二、FastCGI"></a>二、FastCGI</h3><blockquote><p>CGI是第一个，可能仍然是得到最广泛使用的服务器扩展。它在服务器和众多的资源类型之间提供了一种简单的、函数形式的粘合方式，用来处理各种需要的转换。这个接口还能很好的保护服务器，防止一些糟糕的扩展对它造成的破坏。但是CGI也存在着非常大的缺陷，就是每当使用CGI的服务器接受得到一个请求都会开启一个新的CGI进程进行处理（PHP中需要重新解析php.ini，重新载入全部扩展并且初始化全部数据结构），这对服务器的性能有着极大的消耗。为了解决这个问题，就诞生了一种新型的CGI—FastCGI，FastCGI像是一个常驻型的CGI，是作为持久守护进程运行的，很好的解决了这个问题。</p></blockquote><blockquote><p><strong>注：它还支持分布式的运算, 即 FastCGI 程序可以在网站服务器以外的主机上执行并且接受来自其它网站服务器来的请求。</strong></p></blockquote><p><strong>其主要行为是：将CGI解释器进程保持在内存中并因此获得较高的性能。</strong></p><p>工作原理：</p><ol><li>Web Server启动时载入FastCGI进程管理器（IIS ISAPI或Apache Module)</li><li>FastCGI进程管理器自身初始化，启动多个CGI解释器进程(可见多个PHP-CGI)并等待来自Web Server的连接。</li><li>当客户端请求到达Web Server时，FastCGI进程管理器选择并连接到一个CGI解释器。Web server将CGI环境变量和标准输入发送到FastCGI子进程PHP-CGI。</li><li>FastCGI子进程完成处理后将标准输出和错误信息从同一连接返回Web Server。当FastCGI子进程关闭连接时，请求便告处理完成。FastCGI子进程接着等待并处理来自FastCGI进程管理器(运行在Web Server中)的下一个连接。 在CGI模式中，PHP-CGI在此便退出了。</li></ol><h3 id="三、PHP-FPM、PHP-CGI"><a href="#三、PHP-FPM、PHP-CGI" class="headerlink" title="三、PHP-FPM、PHP-CGI"></a>三、PHP-FPM、PHP-CGI</h3><blockquote><p>大家都知道，PHP的解释器是PHP-CGI。PHP-CGI只是个CGI程序，他自己本身只能解析请求，返回结果，不会进程管理,所以就出现了一些能够调度PHP-CGI进程的程序，PHP-FPM就是经过多年实验和使用并被PHP官方收纳的这样的程序。</p></blockquote><blockquote><p>而PHP-fpm就是针对于PHP的，Fastcgi的一种实现，他负责管理一个进程池，来处理来自Web服务器的请求。</p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> PHP </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> php </tag>
+            
+            <tag> CGI </tag>
+            
+            <tag> php-fpm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>MySQL条件计数查询</title>
       <link href="/2018/06/14/MySQL%E6%9D%A1%E4%BB%B6%E8%AE%A1%E6%95%B0%E6%9F%A5%E8%AF%A2/"/>
       <url>/2018/06/14/MySQL%E6%9D%A1%E4%BB%B6%E8%AE%A1%E6%95%B0%E6%9F%A5%E8%AF%A2/</url>
